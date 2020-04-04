@@ -1,117 +1,107 @@
 // - створити функцію яка виводить масив
- function showArray(arr) {
+function showArray(arr) {
     console.log(arr);
 }
 
-// const array = [1, 2, 3, 4, 5, 6];
-// showArray(array);
 // - створити функцію, яка заповнює масив рандомними числами та виводить його. Для виведення використати попвередню функцію.
-// function fillArray(arr) {
-//     for (let i = 0; i < 10; i++) {
-//         arr.push(Math.random());
-//     }
+function fillArray(arr) {
+    for (let i = 0; i < 10; i++) {
+        arr.push(Math.random());
+    }
 
-//     showArray(arr);
-// }
-// const arr = []
-// fillArray(arr);
+    showArray(arr);
+}
+
 // - створити функцію яка приймає три числа та виводить та повертає найменьше.
-// function showMinNum(num1, num2, num3) {
-//     if (num1 < num2 && num1 < num3) {
-//         console.log(num1);
-//     } else if (num2 < num1 && num2 < num3) {
-//         console.log(num2);
-//     } else {
-//         console.log(num3);
-//     }
-// }
-// showMinNum(1, 3, 5);
+function showMinNum(num1, num2, num3) {
+    if (num1 < num2 && num1 < num3) {
+        console.log(num1);
+    } else if (num2 < num1 && num2 < num3) {
+        console.log(num2);
+    } else {
+        console.log(num3);
+    }
+}
+
 // - створити функцію яка приймає три числа та виводить та повертає найбільше.
-// function showMaxNum(num1, num2, num3) {
-//     if (num1 > num2 && num1 > num3) {
-//         console.log(num1);
-//     } else if (num2 > num1 && num2 > num3) {
-//         console.log(num2);
-//     } else {
-//         console.log(num3);
-//     }
-// }
-// showMaxNum(4, 3, 5);
+function showMaxNum(num1, num2, num3) {
+    if (num1 > num2 && num1 > num3) {
+        console.log(num1);
+    } else if (num2 > num1 && num2 > num3) {
+        console.log(num2);
+    } else {
+        console.log(num3);
+    }
+}
+
 // - створити функцію яка приймає будь-яку кількість чисел, повертає найменьше, а виводить найбільше
+function showMaxMinNum(...args) {
+    let min = args[0];
+    let max = min;
 
-// function showMaxNum(arguments) {
-//     if (num1 > num2 && num1 > num3) {
-//         console.log(num1);
-//     } else if (num2 > num1 && num2 > num3) {
-//         console.log(num2);
-//     } else {
-//         console.log(num3);
-//     }
-// }
-// - створити функцію яка виводить масив
-// const array = [1, 2, 3, 4, 5, 6, 7];
-// showArray(array);
+    for (const number of args) {
+        if (number < min) {
+            min = number;
+        }
+
+        if (number > max) {
+            max = number;
+        }
+    }
+    return min;
+    console.log(max);
+
+}
+
 // - створити функцію яка повертає найбільше число з масиву
-// function maxNumFromArray(array) {
-//     const max = array[0];
-//     for (let i = 0; i < array.length; i++) {
-//         if(array[i]>array[0]){
-//             array[0] =array[i];
-//         }
-//     }
-//     console.log(array[0]);
-// }
+function maxNumFromArray(array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > array[0]) {
+            array[0] = array[i];
+        }
+    }
+    console.log(array[0]);
+}
 
-// const mass = [10, 2, 13, 14, 5, 26];
-// maxNumFromArray(mass);
-// minNumFromArray(mass);
-// // - створити функцію яка повертає найменьше число з масиву
-// function minNumFromArray(array) {
-//     const min = array[0];
-//     for (let i = 0; i < array.length; i++) {
-//         if(array[i]<array[0]){
-//             array[0] =array[i];
-//         }
-//     }
-//     console.log(array[0]);
-// }
+// - створити функцію яка повертає найменьше число з масиву
+function minNumFromArray(array) {
+    const min = array[0];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < array[0]) {
+            array[0] = array[i];
+        }
+    }
+    console.log(array[0]);
+}
 
 // - створити функцію яка приймає масив чисел та складає значення елементів масиву та повертає його.
-// function itemsSum(array){
-//     let temp = 0;
-//     for(let i = 0; i<array.length; i++){
-//         temp +=array[i];
+function itemsSum(array) {
+    let temp = 0;
+    for (let i = 0; i < array.length; i++) {
+        temp += array[i];
 
-//     }
-//     console.log(temp);
-// }
+    }
+    console.log(temp);
+}
 
-// let array = [2,4,1,4];
-// itemsSum(array);
 // - створити функцію яка приймає масив чисел та повертає середнє арифметичне його значень.
-// function avg(array) {
-//     let temp = 0;
-//     let length;
-//     for (let i = 0; i < array.length; i++) {
-//         temp += array[i];
-//     }
-//     temp = temp / (array.length);
-//     console.log(temp);
-// }
+function avg(array) {
+    let temp = 0;
+    for (let i = 0; i < array.length; i++) {
+        temp += array[i];
+    }
+    temp = temp / (array.length);
+    console.log(temp);
+}
 
-// let array = [2, 4, 1, 4];
-// avg(array);
 // - Створити функцію яка приймає масив будь яких объектів, та повертає значення кількості об'єктів в масиві
-// function showObjectNum(array) {
-//     let num = 0;
-//     for (let i = 1; i <= array.length; i++) {
-//         num = i;
-//     }
-//     console.log(num);
-// }
-
-let array = [{ name: 'Sviat', age: 21, hello: 2 }, { name: 'Julia' }, { id: 123 }];
-// showObjectNum(array);
+function showObjectNum(array) {
+    let num = 0;
+    for (let i = 1; i <= array.length; i++) {
+        num = i;
+    }
+    console.log(num);
+}
 
 // - Створити функцію яка приймає масив будь яких объектів, та повертає загальн кількість полів в них
 function arrayNum(array) {
@@ -124,7 +114,25 @@ function arrayNum(array) {
     console.log(num);
 }
 
+
+//Создание массивов
+const array = [1, 2, 3, 4, 5, 6];
+const arr = [10, 2, 13, 14, 5, 26];
+const empty_arr = [];
+let obj_array = [{name: 'Sviat', age: 21, hello: 2}, {name: 'Julia'}, {id: 123}];
+
+//Вызов функций
+showArray(array);
+fillArray(empty_arr);
+showMinNum(7, 3, 5);
+avg(array);
+showMaxNum(4, 31, 5);
+console.log(showMaxMinNum(1,4,2,5,12,62,74,3));
+showObjectNum(obj_array);
 arrayNum(array);
+maxNumFromArray(arr);
+minNumFromArray(arr);
+itemsSum(array);
 // - створити функцію  яка скаладає значення елементів з однаковими індексами  та повертає новий результуючий масив.
 //   Приклад
 //   [1,2,3,4]
@@ -155,7 +163,6 @@ arrayNum(array);
 //             let usersWithId = [{id: 1, name: 'vasya', age: 31, status: false}, {id: 2, name: 'petya', age: 30, status: true}, {id: 3, name: 'kolya', age: 29, status: true}, {id: 4, name: 'olya', age: 28, status: false},];
 //             let citiesWithId = [{user_id: 3, country: 'USA', city: 'Portland'}, {user_id: 1, country: 'Ukraine', city: 'Ternopil'}, {user_id: 2, country: 'Poland', city: 'Krakow'}, {user_id: 4, country: 'USA', city: 'Miami'},];
 // Частковий приклад реультату:
-
 
 
 // ***- беремо завдання з правилами з укроку №3 :
