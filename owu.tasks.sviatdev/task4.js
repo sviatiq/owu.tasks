@@ -114,13 +114,45 @@ function arrayNum(array) {
     console.log(num);
 }
 
+// - створити функцію  яка скаладає значення елементів з однаковими індексами  та повертає новий результуючий масив.
+//   Приклад
+//   [1,2,3,4]
+//   [2,3,4,5]
+//   результат
+//   [3,5,7,9]
+function sameIndexSum(arr1, arr2){
+    let new_arr = [];
+    for (const item1 in arr1) {
+        for (const item2 in arr2) {
+            if(item1 === item2){
+                new_arr.push(arr1[item1]+arr2[item2]);
+            }
+        }
+    }
+    console.log(new_arr);
+}
+
+// - *** приймає масив та число "i", та міняє місцями об`єкт який знаходиться в індексі "i" на "i+1"
+function replaceI(array, num) {
+    let temp;
+    for(let i = 0; i<array.length; i++){
+        if(i === num){
+            temp = array[i];
+            array[i] = array[i+1];
+            array[i+1] = temp;
+        }
+    }
+    console.log(array);
+}
 
 //Создание массивов
 const array = [1, 2, 3, 4, 5, 6];
 const arr = [10, 2, 13, 14, 5, 26];
 const empty_arr = [];
 let obj_array = [{name: 'Sviat', age: 21, hello: 2}, {name: 'Julia'}, {id: 123}];
-
+const changebleArray = [1,2,3,4];
+const arr1 = [1,2,3,4];
+const arr2 = [2,3,4,5];
 //Вызов функций
 showArray(array);
 fillArray(empty_arr);
@@ -133,13 +165,8 @@ arrayNum(array);
 maxNumFromArray(arr);
 minNumFromArray(arr);
 itemsSum(array);
-// - створити функцію  яка скаладає значення елементів з однаковими індексами  та повертає новий результуючий масив.
-//   Приклад
-//   [1,2,3,4]
-//   [2,3,4,5]
-//   результат
-//   [3,5,7,9]
-// - *** приймає масив та число "i", та міняє місцями об`єкт який знаходиться в індексі "i" на "i+1"
+sameIndexSum(arr1, arr2);
+replaceI(changebleArray, 2);
 // - *** створити функцію яка буде переносити елементи з значенням 0 у кінець маисву. Зберігаючи при цьому порядок не нульових значень.
 // Двожина масиву від 2 до 100
 // Приклад
