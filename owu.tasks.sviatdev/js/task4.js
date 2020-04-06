@@ -120,12 +120,12 @@ function arrayNum(array) {
 //   [2,3,4,5]
 //   результат
 //   [3,5,7,9]
-function sameIndexSum(arr1, arr2){
+function sameIndexSum(arr1, arr2) {
     let new_arr = [];
     for (const item1 in arr1) {
         for (const item2 in arr2) {
-            if(item1 === item2){
-                new_arr.push(arr1[item1]+arr2[item2]);
+            if (item1 === item2) {
+                new_arr.push(arr1[item1] + arr2[item2]);
             }
         }
     }
@@ -135,11 +135,11 @@ function sameIndexSum(arr1, arr2){
 // - *** приймає масив та число "i", та міняє місцями об`єкт який знаходиться в індексі "i" на "i+1"
 function replaceI(array, num) {
     let temp;
-    for(let i = 0; i<array.length; i++){
-        if(i === num){
+    for (let i = 0; i < array.length; i++) {
+        if (i === num) {
             temp = array[i];
-            array[i] = array[i+1];
-            array[i+1] = temp;
+            array[i] = array[i + 1];
+            array[i + 1] = temp;
         }
     }
     console.log(array);
@@ -150,9 +150,9 @@ const array = [1, 2, 3, 4, 5, 6];
 const arr = [10, 2, 13, 14, 5, 26];
 const empty_arr = [];
 let obj_array = [{name: 'Sviat', age: 21, hello: 2}, {name: 'Julia'}, {id: 123}];
-const changebleArray = [1,2,3,4];
-const arr1 = [1,2,3,4];
-const arr2 = [2,3,4,5];
+const changebleArray = [1, 2, 3, 4];
+const arr1 = [1, 2, 3, 4];
+const arr2 = [2, 3, 4, 5];
 //Вызов функций
 showArray(array);
 fillArray(empty_arr);
@@ -167,70 +167,186 @@ minNumFromArray(arr);
 itemsSum(array);
 sameIndexSum(arr1, arr2);
 replaceI(changebleArray, 2);
-// - *** створити функцію яка буде переносити елементи з значенням 0 у кінець маисву. Зберігаючи при цьому порядок не нульових значень.
-// Двожина масиву від 2 до 100
+
+// - *** Створити функцію, яка буде переносити елементи з значенням 0 у кінець масиву.
+// Зберігаючи при цьому порядок ненульових значень.
+// Довжина масиву від 2 до 100
 // Приклад
 // [1,0,6,0,3] => [1,6,3,0,0]
 // [0,1,2,3,4] => [1,2,3,4,0]
 // [0,0,1,0]   => [1,0,0,0]
 
+//TODO complete this task
+// function replaceZeros(array) {
+//     for (let i = 0; i < array.length; i++) {
+//         if (i === 0) {
+//             array.splice(i);
+//             replaceZeros(array);
+//         }else{
+//             break;
+//         }
+//     }
+//     console.log(array);
+// }
+// let arrayA = [0,0,1,0];
+// replaceZeros(arrayA);
+
 // Створити функцію яка :
 // - Додає в боді блок з текстом "Hello owu"
+function addTextToBlock() {
+    const div = document.createElement('div');
+
+    div.innerText = 'Hello owu';
+
+    document.body.appendChild(div);
+}
+addTextToBlock();
+
 // - Додає в боді елемент з текстом . Тип елементу та текст отримати через аргументи
-// - приймає масив автомобілів (можна взяти з попередніх дз ),та  індентифікатор елемнту в який потрібно додати список цих автомобілів.
-// Для кожного автомобіля створити свій блок, та додати його в елемент, індентифікатор якого ви отримали. Всі властивості авто в обному блоці
+function addTextToBlock(element, text) {
+    const div = document.createElement(element);
+
+    div.innerText = text;
+
+    document.body.appendChild(div);
+}
+addTextToBlock('div', 'Hello, World!');
+
+// - приймає масив автомобілів (можна взяти з попередніх дз ),та  індентифікатор елементу в який потрібно додати список цих автомобілів.
+// Для кожного автомобіля створити свій блок, та додати його в елемент, індентифікатор якого ви отримали. Всі властивості авто в одному блоці
+const cars = [
+    { name: 'Ferrari', age: 19, other: 'blabla' },
+    { name: 'Bentli', age: 24, other: 'someValue' },
+    { name: 'Audi', age: 21, other: 'joyjoyjoy' },
+    { name: 'BMW', age: 92, other: 'lolololo' },
+    { name: 'Folkswagen', age: 1, other: 'ananas' },
+    { name: 'Mercedes', age: 8, other: 'ogogogo' },
+    { name: 'Nissan', age: 28, other: 'hahaha' },
+    { name: 'Opel', age: 53, other: 'ktokto' },
+    { name: 'Lamborgini', age: 9, other: 'lalala' },
+    { name: 'Mustang', age: 12, other: 'dadada' },
+];
+
+function buildStructure(array, id) {
+    let elementId = document.getElementById(id);
+
+    for (const arrayElement of array) {
+        let div = document.createElement('div');
+        div.innerText = `${arrayElement.name} ${arrayElement.age} ${arrayElement.other}`;
+        elementId.appendChild(div);
+    }
+}
+buildStructure(cars, 'books');
+
 // - приймає масив автомобілів (можна взяти з попередніх дз ),та  індентифікатор елемнту в який потрібно додати список цих автомобілів.
 // Для кожного автомобіля створити свій блок, та додати його в елемент, індентифікатор якого ви отримали.
 // Для кожної властивості створити всередені блока автомоблія свій блок
+function buildStructure(array, id) {
+    let elementId = document.getElementById(id);
+
+    for (const arrayElement of array) {
+        let name = document.createElement('div');
+        let age = document.createElement('p');
+        let other = document.createElement('span');
+        name.innerText = `${arrayElement.name} `;
+        age.innerText = `${arrayElement.age}`;
+        other.innerText =`${arrayElement.other}`;
+
+        elementId.appendChild(name);
+        elementId.appendChild(age);
+        elementId.appendChild(other);
+    }
+}
+buildStructure(cars, 'books');
+
 
 // (на основі минулого ДЗ)
 // **- функція приймає 2 масиви з рівною кількістю об'єктів та з'єднює в один об'єкт користувача та місто з відповідними "id" та "user_id",
 // та повертає масив цих з'єднаних об'єктів.
 // Приклад масивів:
-//             let usersWithId = [{id: 1, name: 'vasya', age: 31, status: false}, {id: 2, name: 'petya', age: 30, status: true}, {id: 3, name: 'kolya', age: 29, status: true}, {id: 4, name: 'olya', age: 28, status: false},];
-//             let citiesWithId = [{user_id: 3, country: 'USA', city: 'Portland'}, {user_id: 1, country: 'Ukraine', city: 'Ternopil'}, {user_id: 2, country: 'Poland', city: 'Krakow'}, {user_id: 4, country: 'USA', city: 'Miami'},];
-// Частковий приклад реультату:
+let usersWithId = [{id: 1, name: 'vasya', age: 31, status: false}, {
+    id: 2,
+    name: 'petya',
+    age: 30,
+    status: true
+}, {id: 3, name: 'kolya', age: 29, status: true}, {id: 4, name: 'olya', age: 28, status: false},];
+let citiesWithId = [{user_id: 3, country: 'USA', city: 'Portland'}, {
+    user_id: 1,
+    country: 'Ukraine',
+    city: 'Ternopil'
+}, {user_id: 2, country: 'Poland', city: 'Krakow'}, {user_id: 4, country: 'USA', city: 'Miami'},];
 
+function mergeArrays(array1, array2) {
+    for (const key1 of array1) {
+        for (const key2 of array2) {
+            if (key1.id === key2.user_id) {
+                key1.address = key2;
+            }
+        }
+    }
+    return array1;
+}
 
-// ***- беремо завдання з правилами з укроку №3 :
+console.log(mergeArrays(usersWithId, citiesWithId));
+
+// ***- беремо завдання з правилами з уроку №3 :
 // Та робимо це функцією.При цьому правила отримувати через аргумент.
 // "Є масив котрий характеризує правила. Створити скрипт який ітерує цей масив, та робить з кожне правило в окремому блоці.
 // При цому в блоці, номер правила записати в свій блок, текст правила записати в свій окремий блок.
 // Результатом відпрацювання скріпта повинна бути структура яка міститься в блоці wrap файла rule.html
-// //todo add rules
+let rules = [
+				{
+					title: 'Первое правило Бойцовского клуба.',
+					body: 'Никому не рассказывать о Бойцовском клубе.'
+				},
+				{
+					title: 'Второе правило Бойцовского клуба.',
+					body: 'Никогда никому не рассказывать о Бойцовском клубе.'
+				},
+				{
+					title: 'Третье правило Бойцовского клуба.',
+					body: 'В схватке участвуют только двое.'
+				},
+				{
+					title: 'Четвертое правило Бойцовского клуба.',
+					body: 'Не более одного поединка за один раз.'
+				},
+				{
+					title: 'Пятое правило Бойцовского клуба.',
+					body: 'Бойцы сражаются без обуви и голые по пояс.'
+				},
+				{
+					title: 'Шестое правило Бойцовского клуба.',
+					body: 'Поединок продолжается столько, сколько потребуется.'
+				},
+				{
+					title: 'Седьмое правило Бойцовского клуба.',
+					body: 'Если противник потерял сознание или делает вид, что потерял, или говорит «Хватит» — поединок окончен.'
+				},
+				{
+					title: 'Восьмое и последнее правило Бойцовского клуба.',
+					body: 'Новичок обязан принять бой.'
+				},
 
-// 			let rules = [
-// 				{
-// 					title: 'Первое правило Бойцовского клуба.',
-// 					body: 'Никому не рассказывать о Бойцовском клубе.'
-// 				},
-// 				{
-// 					title: 'Второе правило Бойцовского клуба.',
-// 					body: 'Никогда никому не рассказывать о Бойцовском клубе.'
-// 				},
-// 				{
-// 					title: 'Третье правило Бойцовского клуба.',
-// 					body: 'В схватке участвуют только двое.'
-// 				},
-// 				{
-// 					title: 'Четвертое правило Бойцовского клуба.',
-// 					body: 'Не более одного поединка за один раз.'
-// 				},
-// 				{
-// 					title: 'Пятое правило Бойцовского клуба.',
-// 					body: 'Бойцы сражаются без обуви и голые по пояс.'
-// 				},
-// 				{
-// 					title: 'Шестое правило Бойцовского клуба.',
-// 					body: 'Поединок продолжается столько, сколько потребуется.'
-// 				},
-// 				{
-// 					title: 'Седьмое правило Бойцовского клуба.',
-// 					body: 'Если противник потерял сознание или делает вид, что потерял, или говорит «Хватит» — поединок окончен.'
-// 				},
-// 				{
-// 					title: 'Восьмое и последнее правило Бойцовского клуба.',
-// 					body: 'Новичок обязан принять бой.'
-// 				},
+			];
 
-// 			];
+function createStructure(rules) {
+    const wrap = document.createElement('div');
+    wrap.id = 'wrap';
+    for (let i = 0; i < rules.length; i++) {
+        const div = document.createElement('div');
+        const h2 = document.createElement('h2');
+        const p = document.createElement('p');
+
+        div.className = `rules rule${i + 1}`;
+        h2.innerText = rules[i].title;
+        p.innerText = rules[i].body;
+
+        div.appendChild(h2);
+        div.appendChild(p);
+        wrap.appendChild(div);
+
+    }
+    document.body.appendChild(wrap);
+}
+createStructure(rules);
