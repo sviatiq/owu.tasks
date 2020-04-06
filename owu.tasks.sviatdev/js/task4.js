@@ -154,19 +154,19 @@ const changebleArray = [1, 2, 3, 4];
 const arr1 = [1, 2, 3, 4];
 const arr2 = [2, 3, 4, 5];
 //Вызов функций
-showArray(array);
-fillArray(empty_arr);
-showMinNum(7, 3, 5);
-avg(array);
-showMaxNum(4, 31, 5);
-console.log(showMaxMinNum(1,4,2,5,12,62,74,3));
-showObjectNum(obj_array);
-arrayNum(array);
-maxNumFromArray(arr);
-minNumFromArray(arr);
-itemsSum(array);
-sameIndexSum(arr1, arr2);
-replaceI(changebleArray, 2);
+// showArray(array);
+// fillArray(empty_arr);
+// showMinNum(7, 3, 5);
+// avg(array);
+// showMaxNum(4, 31, 5);
+// console.log(showMaxMinNum(1,4,2,5,12,62,74,3));
+// showObjectNum(obj_array);
+// arrayNum(array);
+// maxNumFromArray(arr);
+// minNumFromArray(arr);
+// itemsSum(array);
+// sameIndexSum(arr1, arr2);
+// replaceI(changebleArray, 2);
 
 // - *** Створити функцію, яка буде переносити елементи з значенням 0 у кінець масиву.
 // Зберігаючи при цьому порядок ненульових значень.
@@ -176,20 +176,24 @@ replaceI(changebleArray, 2);
 // [0,1,2,3,4] => [1,2,3,4,0]
 // [0,0,1,0]   => [1,0,0,0]
 
-//TODO complete this task
-// function replaceZeros(array) {
-//     for (let i = 0; i < array.length; i++) {
-//         if (i === 0) {
-//             array.splice(i);
-//             replaceZeros(array);
-//         }else{
-//             break;
-//         }
-//     }
-//     console.log(array);
-// }
-// let arrayA = [0,0,1,0];
-// replaceZeros(arrayA);
+function replaceZeros(array) {
+    let zeros = [];
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === 0) {
+            zeros.push(0);
+        }else{
+            newArray.push(array[i]);
+        }
+    }
+    console.log(newArray.concat(zeros));
+}
+let arrayA = [1,0,6,0,3];
+let arrayB = [0,1,2,3,4];
+let arrayC = [0,0,1,0];
+//replaceZeros(arrayA);
+//replaceZeros(arrayB);
+//replaceZeros(arrayC);
 
 // Створити функцію яка :
 // - Додає в боді блок з текстом "Hello owu"
@@ -200,7 +204,7 @@ function addTextToBlock() {
 
     document.body.appendChild(div);
 }
-addTextToBlock();
+// addTextToBlock();
 
 // - Додає в боді елемент з текстом . Тип елементу та текст отримати через аргументи
 function addTextToBlock(element, text) {
@@ -210,7 +214,7 @@ function addTextToBlock(element, text) {
 
     document.body.appendChild(div);
 }
-addTextToBlock('div', 'Hello, World!');
+// addTextToBlock('div', 'Hello, World!');
 
 // - приймає масив автомобілів (можна взяти з попередніх дз ),та  індентифікатор елементу в який потрібно додати список цих автомобілів.
 // Для кожного автомобіля створити свій блок, та додати його в елемент, індентифікатор якого ви отримали. Всі властивості авто в одному блоці
@@ -236,7 +240,7 @@ function buildStructure(array, id) {
         elementId.appendChild(div);
     }
 }
-buildStructure(cars, 'books');
+//buildStructure(cars, 'books');
 
 // - приймає масив автомобілів (можна взяти з попередніх дз ),та  індентифікатор елемнту в який потрібно додати список цих автомобілів.
 // Для кожного автомобіля створити свій блок, та додати його в елемент, індентифікатор якого ви отримали.
@@ -257,7 +261,7 @@ function buildStructure(array, id) {
         elementId.appendChild(other);
     }
 }
-buildStructure(cars, 'books');
+// buildStructure(cars, 'books');
 
 
 // (на основі минулого ДЗ)
@@ -286,8 +290,7 @@ function mergeArrays(array1, array2) {
     }
     return array1;
 }
-
-console.log(mergeArrays(usersWithId, citiesWithId));
+// console.log(mergeArrays(usersWithId, citiesWithId));
 
 // ***- беремо завдання з правилами з уроку №3 :
 // Та робимо це функцією.При цьому правила отримувати через аргумент.
@@ -349,4 +352,6 @@ function createStructure(rules) {
     }
     document.body.appendChild(wrap);
 }
-createStructure(rules);
+// createStructure(rules);
+
+
