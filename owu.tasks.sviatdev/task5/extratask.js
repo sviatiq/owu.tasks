@@ -32,11 +32,7 @@ class Computer {
     };
 
     renew() {
-        if (this.isChangeable) {
-            this.systemChar = 110;
-        } else {
-            console.log('This device can not be changeable');
-        }
+        this.isChangeable ? this.systemChar = 110:  console.log('This device can not be changeable');
     }
 
     info() {
