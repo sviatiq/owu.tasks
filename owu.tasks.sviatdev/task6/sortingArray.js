@@ -2,23 +2,23 @@
 let array = [2, 5, 7, 6, 4, 1, 8, 9, 10, 26, 73, 51, 62, 90, 0, 3, 11, 23, 21, 20];
 
 // -- при помощи метода sort отсортировать массив.
-// console.log(array.sort(function (item1, item2) {
-// //     if (item1 < item2) {
-// //         return true;
-// //     } else {
-// //         return false;
-// //     }
-// // }));
+let arrs = array.sort(function (item1, item2) {
+    if (item1 > item2) {
+        return true;
+    } else {
+        return false;
+    }
+});
+console.log(arrs);
 
 // -- при помощи метода sort и колбека отсортировать массив в ниспадающем напралении.
-//TODO
-// function customSort(array, callback) {
-//    console.log(callback(array));
-// }
-// //
-// customSort(array, function(array) {
-//    array.reverse();
-// });
+function customSort(callback){
+    callback(array);
+}
+
+customSort( function (array) {
+console.log(array.reverse());
+})
 
 // -- при помощи filter получить числа кратные 3
 // console.log(array.filter(function (num) {
