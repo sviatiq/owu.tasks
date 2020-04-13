@@ -206,11 +206,17 @@
 // --Сторити об'єкт класу "принц" за допомоги класу який має поля ім'я, вік, туфелька яку він знайшов.
 // -- за допоиоги циклу знайти яка попелюшка повинна бути з принцом
 
-class Cinderella {
-    constructor(name, age, footSize) {
-        this.name = name;
-        this.age = age;
-        this.footSize = footSize;
+class Human {
+    constructor(name, age) {
+        this.name = name || 'No name';
+        this.age = age || 'No age';
+    }
+}
+
+class Cinderella extends Human{
+    constructor(name, age, footSize){
+    super(name, age);
+        this.footSize = footSize || 'No foot size';
     }
 }
 
@@ -226,15 +232,15 @@ const cinderella9 = new Cinderella('Anya', 24, 39);
 const cinderella10 = new Cinderella('Alina', 20, 38);
 
 
-class Prince {
+class Prince extends Human{
     constructor(name, age, slipperSize) {
-        this.name = name;
-        this.age = age;
-        this.slipperSize = slipperSize;
+        super(name, age);
+        this.slipperSize = slipperSize || 'No slipper size';
     }
+
     findSlipper(cinderellas) {
         for (const size of cinderellas) {
-            if(size.footSize === this.slipperSize){
+            if (size.footSize === this.slipperSize) {
                 console.log(`${size.name}, with foot size ${size.footSize} must be with prince ${this.name}`);
             }
         }
