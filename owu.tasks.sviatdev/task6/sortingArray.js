@@ -98,24 +98,12 @@ calculatorWith2Nums(7, 3, function (num1, num2) {
 function calculatorWith3Nums(num1, num2, num3, callback) {
     console.log(callback(num1, num2, num3));
 };
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 + num2 + num3;
-});
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 - num2 - num3;
-});
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 * num2 * num3;
-});
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 / num2 / num3;
-});
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 ** num2 ** num3;
-});
-calculatorWith3Nums(7, 3, 5, function (num1, num2, num3) {
-    return num1 + num2 - num3;
-});
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 + num2 + num3 });
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 - num2 - num3 });
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 * num2 * num3 });
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 / num2 / num3 });
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 ** num2 ** num3 });
+calculatorWith3Nums(7, 3, 5,  (num1, num2, num3) => { return num1 + num2 - num3; });
 
 let cars = [
     {
