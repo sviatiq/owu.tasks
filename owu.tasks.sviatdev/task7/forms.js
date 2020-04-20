@@ -154,6 +154,40 @@
 // };
 
 // - Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
+// const photoArray = [
+//     {id: 1, img: 'img1.jpg'},
+//     {id: 2, img: 'img2.jpg'},
+//     {id: 3, img: 'img3.jpg'},
+//     {id: 4, img: 'img4.jpg'}
+// ];
+//
+// const content = document.getElementById('content');
+// const img = document.createElement('img');
+// const btn1 = document.createElement('button');
+// const btn2 = document.createElement('button');
+//
+//
+// btn1.innerText = 'Left';
+// btn2.innerText = 'Right';
+// let index = 0;
+//
+// img.width = 300;
+// img.height = 500;
+// img.src = photoArray[index].img;
+//
+// content.appendChild(img);
+// content.appendChild(btn1);
+// content.appendChild(btn2);
+//
+// btn1.onclick = () => {
+//     index - 1 < 0 ? index = photoArray.length - 1 : index = index - 1;
+//     img.src = photoArray[index].img;
+// };
+//
+// btn2.onclick = () => {
+//     index + 1 > photoArray.length - 1 ? index = 0 : index = index + 1;
+//     img.src = photoArray[index].img;
+// };
 
 // - Створити масив не цензцрних слів.
 //     Сворити інпут текстового типу.
@@ -194,6 +228,26 @@
 
 // -- создать скрипт, который берет считывает на странице (rules.html) текст и делает сбоку меню-оглавление по всем заголовкам которые есть в тексте.
 //    При клике на пункт оглавления вы должны отправляться к этому пункту в тексте
+// const h2Array = document.getElementsByTagName('h2');
+// const wrap = document.getElementById('wrap');
+// const content = document.getElementById('content');
+// const ul = document.createElement('ul');
+//
+// for(let i = 0; i<h2Array.length; i++){
+//     const li = document.createElement('li');
+//     const a = document.createElement('a');
+//     let yakor = 'yakor'+i;
+//     a.href = '#'+yakor;
+//     h2Array[i].setAttribute('id', yakor);
+//     a.innerHTML = h2Array[i].innerText;
+//     li.appendChild(a);
+//     ul.appendChild(li);
+// }
+// content.appendChild(ul);
+// content.style.width = '30%';
+// wrap.style.width = '70%';
+// content.style.float = 'left';
+// wrap.style.float = 'left';
 
 //-- взять массив пользователей
 // let usersWithAddress = [
