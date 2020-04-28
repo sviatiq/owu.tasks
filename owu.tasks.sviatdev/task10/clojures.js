@@ -1,65 +1,124 @@
-class UserCard {
-    constructor(balance,
-                transactionLimit,
-                historyLogs, key) {
+class HistoryLog {
 
+    constructor(operationType, credits, operationTime) {
+        this.operationType = operationType || null;
+        this.credits = credits || null;
+        this.operationTime = operationTime || null;
+    }
+
+    getOperationType() {
+        return this.operationType;
+    }
+    getCredits() {
+        return this.credits;
+    }
+    getOperationTime() {
+        return this.operationTime;
+    }
+    setOperationType(operationType) {
+        this.operationType = operationType;
+    }
+    setCredits(credits) {
+        this.credits = credits;
+    }
+    setOperationTime(operationTime) {
+        this.operationTime = operationTime;
+    }
+    getAllOptions(){
+        return `${this.getOperationType()} ${this.getCredits()} ${this.getOperationTime()}`;
+    }
+}
+
+class UserCard  {
+    constructor(balance, transactionLimit, historyLogs, key) {
         this.balance = balance;
         this.transactionLimit = transactionLimit;
-        this.historyLogs = historyLogs || 'No logs';
+        this.historyLogs = historyLogs.getAllOptions();
         this.key = key || 'No key';
     }
 
+    getBalance() {
+        return this.balance;
+    }
+
+    getTransactionLimit() {
+        return this.transactionLimit;
+    }
+
+    getHistoryLogs() {
+        return this.historyLogs;
+    }
+
+    getKey() {
+        return this.key;
+    }
+
+    setBalance(balance) {
+        this.balance = balance;
+    }
+
+    setTransactionLimit(transactionLimit) {
+        this.transactionLimit = transactionLimit;
+        this.historyLogs = new HistoryLog('Transaction limit change', this.getTransactionLimit(), 'Date.now().toString()');
+    }
+
+    setHistoryLogs(historyLogs) {
+        this.historyLogs = historyLogs;
+    }
+
+    setKey(key) {
+        this.key = key;
+    }
+
     getCardOptions() {
-        return `Balance: ${this.balance}\nTransaction Limit: ${this.transactionLimit}\nHistory Log: ${this.historyLogs}\nKey: ${this.key}`
+        console.log('Баланс: ');
+        return `Balance: ${this.getBalance()}$\nTransaction Limit: ${this.getTransactionLimit()}$\nHistory Log: ${this.getHistoryLogs()}\nKey: ${this.getKey()}`
     }
 
     putCredits(credits) {
-        this.balance += credits;
+        console.log(`Кладем на карту ${credits}$`);
+        this.setBalance(this.balance + credits);
+        this.historyLogs = new HistoryLog('Received credits', credits, Date.now().toString());
+        return this.historyLogs;
     }
 
     takeCredits(credits) {
-        if (credits > this.transactionLimit && credits > this.balance) {
+        if (credits >= this.transactionLimit && credits >= this.balance) {
+            console.log(`Снятие ${credits}$...`)
             this.balance -= credits;
+            this.historyLogs = new HistoryLog('Withdrawal of credits', credits, Date.now().toString());
         } else {
             throw new Error('Not enough money or limit is low');
         }
+        return this.historyLogs;
     }
-    setTransactionLimit(limit) {
-        this.transactionLimit += limit;
-    }
-    transferCredits(creditNum, userCard){
-        if(this.balance > creditNum && this.transactionLimit > creditNum){
-            creditNum = creditNum - creditNum*0.5;
-            userCard = this.balance
 
-
+    transferCredits(creditNum, userCard) {
+        if (this.balance > creditNum && this.transactionLimit > creditNum) {
+            creditNum = creditNum - (creditNum * 0.5) / 100;
+            userCard.balance += creditNum;
         }
     }
 }
 
-
 function userCard(...nums) {
-    const userCard = new UserCard(100, 100, 'Log', nums);
+    const userCard = new UserCard(100, 100, '', nums);
     return userCard;
 }
 
-const user1 = userCard(3);
+const userCard1 = userCard(1);
+console.log(userCard1.getCardOptions());
+userCard1.takeCredits(100);
+console.log(userCard1.getCardOptions());
+
+userCard1.putCredits(300);
+console.log(userCard1.getCardOptions());
+userCard1.setTransactionLimit(1000);
+console.log(userCard1.getCardOptions());
+
 const userCard2 = userCard(2);
-console.log(user1);
-console.log(user1.getCardOptions());
-user1.putCredits(100);
-
-try {
-    user1.takeCredits(120);
-
-} catch (err) {
-    console.log(err);
-}
-user1.setTransactionLimit(1000);
+console.log(userCard2.getCardOptions());
+userCard1.transferCredits(100, userCard2);
+console.log(userCard2.getCardOptions());
 
 
-const opt = user1.getCardOptions();
-user1.transferCredits(100, userCard2);
-const op = userCard2.getCardOptions();
-console.log(opt);
-console.log(op);
