@@ -1,40 +1,20 @@
-class HistoryLog {
-
-    constructor(operationType, credits, operationTime) {
-        this.operationType = operationType || null;
-        this.credits = credits || null;
-        this.operationTime = operationTime || null;
-    }
-
-    getOperationType() {
-        return this.operationType;
-    }
-    getCredits() {
-        return this.credits;
-    }
-    getOperationTime() {
-        return this.operationTime;
-    }
-    setOperationType(operationType) {
-        this.operationType = operationType;
-    }
-    setCredits(credits) {
-        this.credits = credits;
-    }
-    setOperationTime(operationTime) {
-        this.operationTime = operationTime;
-    }
-    getAllOptions(){
-        return `${this.getOperationType()} ${this.getCredits()} ${this.getOperationTime()}`;
-    }
-}
-
-class UserCard  {
-    constructor(balance, transactionLimit, historyLogs, key) {
+class UserCard {
+    constructor(balance, transactionLimit, historyLog, key) {
         this.balance = balance;
         this.transactionLimit = transactionLimit;
-        this.historyLogs = historyLogs.getAllOptions();
-        this.key = key || 'No key';
+        this.historyLogs = [];
+        this.key = key;
+    }
+
+    getDateTime() {
+        const date = new Date();
+        const datetime = date.getDate() + "/"
+            + (date.getMonth() + 1) + "/"
+            + date.getFullYear() + " , "
+            + date.getHours() + ":"
+            + date.getMinutes() + ":"
+            + date.getSeconds();
+        return datetime;
     }
 
     getBalance() {
@@ -59,7 +39,11 @@ class UserCard  {
 
     setTransactionLimit(transactionLimit) {
         this.transactionLimit = transactionLimit;
-        this.historyLogs = new HistoryLog('Transaction limit change', this.getTransactionLimit(), 'Date.now().toString()');
+        this.historyLogs.push({
+            operationType: 'Transaction limit change ',
+            credits: this.getTransactionLimit(),
+            operationTime: this.getDateTime()
+        });
     }
 
     setHistoryLogs(historyLogs) {
@@ -72,21 +56,30 @@ class UserCard  {
 
     getCardOptions() {
         console.log('Баланс: ');
-        return `Balance: ${this.getBalance()}$\nTransaction Limit: ${this.getTransactionLimit()}$\nHistory Log: ${this.getHistoryLogs()}\nKey: ${this.getKey()}`
+        return this;
     }
 
     putCredits(credits) {
         console.log(`Кладем на карту ${credits}$`);
         this.setBalance(this.balance + credits);
-        this.historyLogs = new HistoryLog('Received credits', credits, Date.now().toString());
-        return this.historyLogs;
+        this.historyLogs.push({
+            operationType: 'Received credits ',
+            credits: credits,
+            operationTime: this.getDateTime()
+        });
+
+        return this.historyLogs.toString();
     }
 
     takeCredits(credits) {
         if (credits >= this.transactionLimit && credits >= this.balance) {
             console.log(`Снятие ${credits}$...`)
             this.balance -= credits;
-            this.historyLogs = new HistoryLog('Withdrawal of credits', credits, Date.now().toString());
+            this.historyLogs.push({
+                operationType: 'Withdrawal of credits ',
+                credits: credits,
+                operationTime: this.getDateTime()
+            });
         } else {
             throw new Error('Not enough money or limit is low');
         }
@@ -101,7 +94,7 @@ class UserCard  {
     }
 }
 
-function userCard(...nums) {
+function userCard(nums) {
     const userCard = new UserCard(100, 100, '', nums);
     return userCard;
 }
@@ -110,15 +103,38 @@ const userCard1 = userCard(1);
 console.log(userCard1.getCardOptions());
 userCard1.takeCredits(100);
 console.log(userCard1.getCardOptions());
-
+console.log('--------------');
 userCard1.putCredits(300);
 console.log(userCard1.getCardOptions());
 userCard1.setTransactionLimit(1000);
 console.log(userCard1.getCardOptions());
-
+console.log('--------------');
 const userCard2 = userCard(2);
 console.log(userCard2.getCardOptions());
-userCard1.transferCredits(100, userCard2);
-console.log(userCard2.getCardOptions());
+console.log('--------------');
+
+class UserAccount {
+    constructor(name) {
+        this.name = name;
+        this.cards = [];
+    }
+
+    addCard(card) {
+        !card.length <= 3 ? this.cards.push(card) : console.log('Max card num is 3');
+    }
+
+    getCardByKey(key) {
+        this.cards.forEach(item => item.key === key
+            ? console.log(item)
+            : console.log('There is no card with this key')
+        );
+    }
+}
+
+const userAcc = new UserAccount('Sviat');
+userAcc.addCard(userCard1);
+userAcc.addCard(userCard2);
+console.log(userAcc);
+userAcc.getCardByKey(3);
 
 
