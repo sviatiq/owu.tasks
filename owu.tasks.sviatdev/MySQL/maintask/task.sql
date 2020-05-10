@@ -89,9 +89,11 @@ SET City = 'Kyiv'
 DELETE FROM application
 WHERE CreditState = 'Returned';
 # 20. Видалити кредити клієнтів, в яких друга літера прізвища є голосною.
-SELECT DISTINCT * FROM client
+DELETE a.* FROM application a
+JOIN client ON a.Client_idClient = client.idClient
 WHERE LastName LIKE '_a%' OR LastName LIKE '_e%' OR LastName LIKE '_i%'
 OR LastName LIKE '_o%' OR LastName LIKE '_u%' OR LastName LIKE '_y%';
+
 
 # Знайти львівські відділення, які видали кредитів на загальну суму більше ніж 5000
 SELECT SUM(Sum) FROM application
